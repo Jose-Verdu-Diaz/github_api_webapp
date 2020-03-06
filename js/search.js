@@ -12,5 +12,9 @@ $(document).ready(function(){
 				alert(data.items[0].login);
      		}
 		});
-	});
+
+		//$(".panel-info").append("<div><button type="'button'" class="'btn btn-info'" data-toggle="'collapse'" data-target="'#demo'">Simple collapsible</button><div id="'demo'" class="'collapse'">TEST</div></div>");
+		$(".panel-info").append("<div><button type="'button'" class="'btn btn-info'" data-toggle="'collapse'" data-target="'#demo'">Simple collapsible</button></div>");
+	});	
 });
+
