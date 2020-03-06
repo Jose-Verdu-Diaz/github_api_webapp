@@ -31,6 +31,7 @@ $(document).ready(function(){
 						type: "GET",
 						url: 'https://api.github.com/users/'+data.items[i].login+'/followers',
 						dataType: "json",
+						async: false,
 						success: function (_data) {
 							console.log(_data);
 							var l = _data.length;
