@@ -12,7 +12,7 @@ $(document).ready(function(){
 				n = data.items.length;
 				var i = 0;
 				while(i<n){
-					$(".panel-info").append("<div><button type=\"button\" class=\"btn btn-info\" data-toggle=\"collapse\" data-target=\"#usuario"+i+"\">"+data.items[i].login+"</button><div id=\"usuario"+i+"\" class=\"collapse\">TEST</div></div>");
+					$("#accordion").append("<div class=\"card\"><div class=\"card-header\" id=\"Cabecera"+i+"\"><button class=\"btn btn-block\" data-toggle=\"collapse\" data-target=\"#collapse"+i+"\" aria-expanded=\"true\" aria-controls=\"collapse"+i+"\">"+data.items[i].login+"</button></div><div id=\"collapse"+i+"\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordion\"><div class=\"card-body\">TEST</div></div></div>");
 					i=i+1;
 				}
      		}
