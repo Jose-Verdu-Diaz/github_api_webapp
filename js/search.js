@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
 	var PlantillaPanelInfo = $('#PlantillaPanelInfoOculta').html();
+	var PlantillaFilaRepo = $('#PlantillaFilaRepoOculta').html();
+
 
   	$('#buscar-usuario').on('click',function(e){
   		e.preventDefault(); // disable the default form submit event
@@ -23,13 +25,14 @@ $(document).ready(function(){
 					$('#BotonColapsar'+i).attr('data-target', '#collapse'+i);
 					$('#collapse').attr('id', 'collapse'+i);
 					$('#Contenido').attr('id', 'Contenido'+i);
+					$('#TablaRepos').attr('id', 'TablaRepos'+i);
 
 					$('#BotonColapsar'+i).append(data.items[i].login);	
 
 					var x=i;
 					$.ajax({     
 						type: "GET",
-						url: 'https://api.github.com/users/'+data.items[i].login+'/followers',
+						url: 'https://api.github.com/users/'+data.items[i].login+'/repos',
 						dataType: "json",
 						async: false,
 						success: function (_data) {
@@ -38,13 +41,14 @@ $(document).ready(function(){
 							if(l!=0){
 								var j=0;
 								while(j<l){
-									$('#Contenido'+x).append("<p>"+_data[j].login+"</p>");
+									$('#TablaRepos'+x).append(PlantillaFilaRepo);
+
 									j=j+1;
 								}	
 							}else{
-								$('#Contenido'+x).append("<p>Sin seguidores</p>");
+								$('#Contenido'+x).empty();
+								$('#Contenido'+x).append("<p>Sin Repos</p>");
 							}
-
 			     		}
 					});
 					i=i+1;

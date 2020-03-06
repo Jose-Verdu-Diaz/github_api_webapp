@@ -19,14 +19,36 @@
 		<script src="../bootstrap-4.4.1/dist/js/bootstrap.min.js"></script>
 
 		<script id="PlantillaPanelInfoOculta" type="text/plantilla-personalizada">
-		    <div class="card">
+			<div class="card">
 				<div class="card-header" id="Cabecera">
 					<button id="BotonColapsar" class="btn btn-block" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse"></button>
 				</div>
 				<div id="collapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-					<div id="Contenido" class="card-body"></div>
+					<div id="Contenido" class="card-body">
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Repositorio</th>
+									<th scope="col">Descripción</th>
+						 			<th scope="col">Seguidores</th>
+								</tr>
+							</thead>
+							<tbody id="TablaRepos">
+							</tbody>
+						</table>
+
+					</div>
 				</div>
 			</div>
+		</script>
+
+		<script id="PlantillaFilaRepoOculta" type="text/plantilla-personalizada">
+			<tr>
+				<th scope="row" id="Repo">asd</th>
+				<td id="Desc">asd</td>
+				<td id="Follow">asd</td>
+			</tr>
 		</script>
 
 	</head>
