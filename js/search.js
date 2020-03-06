@@ -1,13 +1,15 @@
 $(document).ready(function(){
+	$('#AnimacionCarga').attr('style', 'visibility:hidden;');
 
 	var PlantillaPanelInfo = $('#PlantillaPanelInfoOculta').html();
 	var PlantillaFilaRepo = $('#PlantillaFilaRepoOculta').html();
-
 
   	$('#buscar-usuario').on('click',function(e){
   		e.preventDefault(); // disable the default form submit event
         var usuario = $("#input-usuario").val();
         var n;
+
+		$('#AnimacionCarga').attr('style', 'visibility: visible;');
 
 		$.ajax({     
 			type: "GET",
@@ -17,8 +19,8 @@ $(document).ready(function(){
 				$(".panel-info").empty();
 				n = data.items.length;
 				console.log(data);
-				var i = 0;
-				if (n!=0) {
+				var i = 0;			
+				if (n!=0) {				
 					while(i<n){
 						$("#accordion").append(PlantillaPanelInfo);
 						$('#Cabecera').attr('id', 'Cabecera'+i);
@@ -32,6 +34,7 @@ $(document).ready(function(){
 						$('#BotonColapsar'+i).attr('style', 'background: url('+data.items[i].avatar_url+');background-position: 0px 0px;background-repeat: no-repeat;background-size: contain;');
 
 						var x=i;
+
 						$.ajax({     
 							type: "GET",
 							url: 'https://api.github.com/users/'+data.items[i].login+'/repos',
@@ -57,14 +60,16 @@ $(document).ready(function(){
 								}
 				     		}
 						});
+						
 						i=i+1;
-					}	
+					}
 				}else{
 					$("#accordion").append("<h1 align=\"center\">No se han encontrado usuarios</h1>");
 				}
 
      		}
 		});
+		$('#AnimacionCarga').attr('style', 'visibility: hidden;');
 	});	
 });
 

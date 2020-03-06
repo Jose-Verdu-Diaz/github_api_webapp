@@ -55,26 +55,15 @@
 
     <body>
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-			<a class="navbar-brand" href="#">API</a>
+			<a class="navbar-brand" href="#">Buscador de repositorios</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link 1</a>
-					</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link 2</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link 3</a>
-					</li>
-				</ul>
+				<div class="navbar-nav mr-auto"></div>
 
 				<form name="buscar-usuario-form" class="form-inline my-2 my-lg-0">
 					<input id="input-usuario" class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">
@@ -86,10 +75,12 @@
 		<main role="main" class="container">
 			<div class="starter-template">
 				<h1 align="center">GitHub API webapp</h1>
-				<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique elementum diam vel efficitur. Aenean posuere tortor sed elit commodo, at gravida ante maximus. Pellentesque ac metus et diam gravida lacinia et et sapien. Nam non gravida massa, eget ornare velit. Nulla sed ligula eget ipsum placerat varius. Integer consequat dignissim mauris, non consequat ligula porta vel. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin a egestas velit. In cursus placerat gravida. Fusce non ullamcorper sapien. Mauris scelerisque erat scelerisque, imperdiet dolor a, eleifend quam.</p>
+				<p class="lead">Introduzca en el buscador un nombre de usuario. Los usuarios que contengan el nombre introducido aparecerán a continuación. Seleccione un usuario para ver una tabla de repositorios con información básica. Téngase en cuenta que si se realiza una búsqueda demasiado genérica y/o el usuario encontrado tiene una gran cantidad de repositorios se puede superar la tasa límite de consulta de la API.</p>
 
 				<div id="accordion" class="panel-info">
 				</div>
+
+				<div id="AnimacionCarga" class="d-flex flex-row justify-content-center" style="visibility: hidden;"><div class="p-2"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>
 
 			</div>
 		</main>
