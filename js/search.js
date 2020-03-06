@@ -18,41 +18,50 @@ $(document).ready(function(){
 				n = data.items.length;
 				console.log(data);
 				var i = 0;
-				while(i<n){
-					$("#accordion").append(PlantillaPanelInfo);
-					$('#Cabecera').attr('id', 'Cabecera'+i);
-					$('#BotonColapsar').attr('id', 'BotonColapsar'+i);
-					$('#BotonColapsar'+i).attr('data-target', '#collapse'+i);
-					$('#collapse').attr('id', 'collapse'+i);
-					$('#Contenido').attr('id', 'Contenido'+i);
-					$('#TablaRepos').attr('id', 'TablaRepos'+i);
+				if (n!=0) {
+					while(i<n){
+						$("#accordion").append(PlantillaPanelInfo);
+						$('#Cabecera').attr('id', 'Cabecera'+i);
+						$('#BotonColapsar').attr('id', 'BotonColapsar'+i);
+						$('#BotonColapsar'+i).attr('data-target', '#collapse'+i);
+						$('#collapse').attr('id', 'collapse'+i);
+						$('#Contenido').attr('id', 'Contenido'+i);
+						$('#TablaRepos').attr('id', 'TablaRepos'+i);
 
-					$('#BotonColapsar'+i).append(data.items[i].login);	
+						$('#BotonColapsar'+i).append(data.items[i].login);	
 
-					var x=i;
-					$.ajax({     
-						type: "GET",
-						url: 'https://api.github.com/users/'+data.items[i].login+'/repos',
-						dataType: "json",
-						async: false,
-						success: function (_data) {
-							console.log(_data);
-							var l = _data.length;
-							if(l!=0){
-								var j=0;
-								while(j<l){
-									$('#TablaRepos'+x).append(PlantillaFilaRepo);
+						var x=i;
+						$.ajax({     
+							type: "GET",
+							url: 'https://api.github.com/users/'+data.items[i].login+'/repos',
+							dataType: "json",
+							async: false,
+							success: function (_data) {
+								console.log(_data);
+								var l = _data.length;
+								if(l!=0){
+									var j=0;
+									while(j<l){
+										$('#TablaRepos'+x).append(PlantillaFilaRepo);
 
-									j=j+1;
-								}	
-							}else{
-								$('#Contenido'+x).empty();
-								$('#Contenido'+x).append("<p>Sin Repos</p>");
-							}
-			     		}
-					});
-					i=i+1;
+										$('#TablaRepos'+x+'>tr>.Repo:last').append(_data[j].name);
+										$('#TablaRepos'+x+'>tr>.Desc:last').append(_data[j].description);
+										$('#TablaRepos'+x+'>tr>.Follow:last').append(_data[j].watchers);
+
+										j=j+1;
+									}	
+								}else{
+									$('#Contenido'+x).empty();
+									$('#Contenido'+x).append("<p>Sin Repos</p>");
+								}
+				     		}
+						});
+						i=i+1;
+					}	
+				}else{
+					$("#accordion").append("<h1 align=\"center\">No se han encontrado usuarios</h1>");
 				}
+
      		}
 		});
 	});	
