@@ -21,7 +21,31 @@ $(document).ready(function(){
 					$('#Cabecera').attr('id', 'Cabecera'+i);
 					$('#BotonColapsar').attr('id', 'BotonColapsar'+i);
 					$('#BotonColapsar'+i).attr('data-target', '#collapse'+i);
-					$('#collapse').attr('id', 'collapse'+i);		
+					$('#collapse').attr('id', 'collapse'+i);
+					$('#Contenido').attr('id', 'Contenido'+i);
+
+					$('#BotonColapsar'+i).append(data.items[i].login);	
+
+					var x=i;
+					$.ajax({     
+						type: "GET",
+						url: 'https://api.github.com/users/'+data.items[i].login+'/followers',
+						dataType: "json",
+						success: function (_data) {
+							console.log(_data);
+							var l = _data.length;
+							if(l!=0){
+								var j=0;
+								while(j<l){
+									$('#Contenido'+x).append("<p>"+_data[j].login+"</p>");
+									j=j+1;
+								}	
+							}else{
+								$('#Contenido'+x).append("<p>Sin seguidores</p>");
+							}
+
+			     		}
+					});
 					i=i+1;
 				}
      		}
