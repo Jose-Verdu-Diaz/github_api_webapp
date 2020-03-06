@@ -28,7 +28,8 @@ $(document).ready(function(){
 						$('#Contenido').attr('id', 'Contenido'+i);
 						$('#TablaRepos').attr('id', 'TablaRepos'+i);
 
-						$('#BotonColapsar'+i).append(data.items[i].login);	
+						$('#BotonColapsar'+i).append("<b>"+data.items[i].login+"</b>");
+						$('#BotonColapsar'+i).attr('style', 'background: url('+data.items[i].avatar_url+');background-position: 0px 0px;background-repeat: no-repeat;background-size: contain;');
 
 						var x=i;
 						$.ajax({     
