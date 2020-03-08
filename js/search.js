@@ -58,7 +58,7 @@ $(document).ready(function(){
 							statusCode: {
 								403: function (response) {
 									$("#accordion").empty();
-									$("#accordion").append("<h2 align=\"center\">Se ha superado la tasa límite de la API.</h2>");
+									$("#accordion").append("<h2 align=\"center\">Error 403: Se ha superado la tasa límite de la API.</h2>");
 									return false;
 								}
 							}
