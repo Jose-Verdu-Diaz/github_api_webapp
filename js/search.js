@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	$('#AnimacionCarga').attr('style', 'visibility:hidden;');
 
 	var PlantillaPanelInfo = $('#PlantillaPanelInfoOculta').html();
 	var PlantillaFilaRepo = $('#PlantillaFilaRepoOculta').html();
@@ -8,15 +7,14 @@ $(document).ready(function(){
   		e.preventDefault(); // disable the default form submit event
         var usuario = $("#input-usuario").val();
         var n;
-
-		$('#AnimacionCarga').attr('style', 'visibility: visible;');
+        var x=0;
 
 		$.ajax({     
 			type: "GET",
 			url: 'https://api.github.com/search/users?q='+usuario,
 			dataType: "json",
 			success: function (data) {
-				$(".panel-info").empty();
+				$("#accordion").empty();
 				n = data.items.length;
 				console.log(data);
 				var i = 0;			
@@ -33,13 +31,10 @@ $(document).ready(function(){
 						$('#BotonColapsar'+i).append("<b>"+data.items[i].login+"</b>");
 						$('#BotonColapsar'+i).attr('style', 'background: url('+data.items[i].avatar_url+');background-position: 0px 0px;background-repeat: no-repeat;background-size: contain;');
 
-						var x=i;
-
 						$.ajax({     
 							type: "GET",
 							url: 'https://api.github.com/users/'+data.items[i].login+'/repos',
 							dataType: "json",
-							async: false,
 							success: function (_data) {
 								console.log(_data);
 								var l = _data.length;
@@ -58,7 +53,15 @@ $(document).ready(function(){
 									$('#Contenido'+x).empty();
 									$('#Contenido'+x).append("<p>Sin Repos</p>");
 								}
-				     		}
+								x=x+1;
+				     		},
+							statusCode: {
+								403: function (response) {
+									$("#accordion").empty();
+									$("#accordion").append("<h2 align=\"center\">Se ha superado la tasa límite de la API.</h2>");
+									return false;
+								}
+							}
 						});
 						
 						i=i+1;
@@ -69,7 +72,6 @@ $(document).ready(function(){
 
      		}
 		});
-		$('#AnimacionCarga').attr('style', 'visibility: hidden;');
 	});	
 });
 
