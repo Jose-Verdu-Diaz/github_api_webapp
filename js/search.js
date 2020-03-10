@@ -56,9 +56,34 @@ $(document).ready(function(){
 								x=x+1;
 				     		},
 							statusCode: {
+								401: function (response) {
+									$("#accordion").empty();
+									$("#accordion").append("<h2 align=\"center\">Error 401: Se requiere autentificación.</h2>");
+									return false;
+								},
 								403: function (response) {
 									$("#accordion").empty();
 									$("#accordion").append("<h2 align=\"center\">Error 403: Se ha superado la tasa límite de la API.</h2>");
+									return false;
+								},
+								404: function (response) {
+									$("#accordion").empty();
+									$("#accordion").append("<h2 align=\"center\">Error 404: No se ha encontrado el recurso solicitado</h2>");
+									return false;
+								},
+								408: function (response) {
+									$("#accordion").empty();
+									$("#accordion").append("<h2 align=\"center\">Error 408: La solicitud ha caducado</h2>");
+									return false;
+								},
+								500: function (response) {
+									$("#accordion").empty();
+									$("#accordion").append("<h2 align=\"center\">Error 500: Error en el servidor de destino.</h2>");
+									return false;
+								},
+								default: function (response) {
+									$("#accordion").empty();
+									$("#accordion").append("<h2 align=\"center\">Error inesperado</h2>");
 									return false;
 								}
 							}
